@@ -8,6 +8,70 @@
         var baseUrl = host;
 
         /**
+         * CRUD City
+         */
+
+        this.saveCity = function (city) {
+            return $http({
+                method: 'POST',
+                url: baseUrl + '/api/city',
+                data: city,
+                headers: {
+                    'Content-type': 'application/json;charset=utf-8',
+                    'X-Auth-Token': StorageHelper.getItem(KEY_STORAGE)
+                }
+            });
+        };
+
+        this.deleteCity = function (city) {
+            return $http({
+                method: 'DELETE',
+                url: baseUrl + '/api/city',
+                data: city,
+                headers: {
+                    'Content-type': 'application/json;charset=utf-8',
+                    'X-Auth-Token': StorageHelper.getItem(KEY_STORAGE)
+                }
+            });
+        };
+
+        this.editCity = function (city) {
+            return $http({
+                method: 'PUT',
+                url: baseUrl + '/api/city',
+                data: city,
+                headers: {
+                    'Content-type': 'application/json;charset=utf-8',
+                    'X-Auth-Token': StorageHelper.getItem(KEY_STORAGE)
+                }
+            });
+        };
+
+        this.getCityByName = function (city) {
+            return $http({
+                method: 'GET',
+                url: baseUrl + '/api/city',
+                params:{
+                    name : city.name
+                },
+                headers: {
+                    'X-Auth-Token': StorageHelper.getItem(KEY_STORAGE)
+                }
+            });
+        };
+
+        this.getAllCities= function () {
+            return $http({
+                method: 'GET',
+                url: baseUrl + '/api/cities',
+                headers: {
+                    'X-Auth-Token': StorageHelper.getItem(KEY_STORAGE)
+                }
+            });
+        };
+
+
+        /**
          * CRUD Category
          */
 

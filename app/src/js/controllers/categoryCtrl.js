@@ -71,9 +71,9 @@
 
                 function getAllCategories() {
                     categoryService.getAllCategories().then(function (categories) {
-                        var userList = [];
+                        var categoryList = [];
                         categories.forEach(function (category) {
-                            userList.push(category);
+                            categoryList.push(category);
                         });
                         $scope.categories = categoryList;
                     }).catch(function () {
