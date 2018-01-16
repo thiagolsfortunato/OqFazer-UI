@@ -1,0 +1,47 @@
+<div class="row">
+    <div class="col s12 center login-spacing">
+        <img class="fblogo" src="src/img/logo.png" alt="">
+    </div>
+</div>
+<div class="row">
+    <div class="col l4 offset-l4 m6 offset-m3 s12">
+        <div class="card grey lighten-4 z-depth-4">
+            <div class="card-content">
+                <form name="form" ng-submit="submitLoginForm()" novalidate>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input placeholder="Usuário" id="username" name="username" type="text" class="validate" ng-model="entry.username" not-empty required>
+                            <label for="username" class="active">Usuário</label>
+                            <div ng-show="form.username.$invalid && form.$submitted">
+                                <div class="red-text">
+                                    <div ng-show="form.username.$error.required"><small>Campo Obrigatório!</small></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input placeholder="Senha" id="password" name="password" type="password" class="validate" ng-model="entry.password" not-empty required>
+                            <label for="password" class="active">Senha</label>
+                            <div ng-show="form.password.$invalid && form.$submitted">
+                                <div class="red-text">
+                                    <div ng-show="form.password.$error.required"><small>Campo Obrigatório!</small></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col s12">
+                            <label>Não tem conta? </label><a ng-click="changeBackgroundColor()" ui-sref="home.user">Crie uma!</a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col s12 center">
+                            <button id="btnLogin" type="submit" class="waves-effect waves-teal oqfazer-color btn btn-login-oqfazer">Acessar</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

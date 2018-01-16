@@ -1,10 +1,81 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<div class="content" id="divForm">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card z-depth-4" ng-show="userForm" >
+                    <div class="card-header" >
+                        <nav class="nav-box-shadow">
+                            <div class="nav-wrapper">
+                                <button type="button" ng-click="closeUserForm()"
+                                        class="waves-teal waves-effect btn pull-right monit-color close-btn-size"><span
+                                        class="fa fa-close white-text"></span></button>
 
-</body>
-</html>
+                                <h5 class="title">Formulário Usuário</h5>
+                            </div>
+                        </nav>
+                    </div>
+                    <div class="card-content">
+
+                        <div class="row">
+                            <form name="form" class="col s12" ng-submit="saveUser()" novalidate>
+                                <div class="row">
+                                    <small class="input-field col s6">
+                                        <input placeholder="Nome" id="name" name="name" type="text" ng-model="user.username" ng-minlength=4 ng-maxlength=15 class="validate" not-empty required>
+                                        <label class="active">Nome</label>
+                                        <div ng-show="form.name.$invalid && form.$submitted">
+                                            <div class="red-text">
+                                                <div ng-show="form.name.$error.required">Campo Obrigatório!</div>
+                                                <div ng-show="form.name.$error.minlength">Mínimo 4 caracteres!</div>
+                                                <div ng-show="form.name.$error.maxlength">Máximo 15 caracteres!</div>
+                                            </div>
+                                        </div>
+                                    </small>
+                                    <small class="input-field col s6">
+                                        <div ng-if="isEdit">
+                                            <input placeholder="Password" id="passwordEdit" name="password" type="password" ng-minlength=6 ng-model="user.password" class="validate">
+                                            <label class="active">Password</label>
+                                        </div>
+                                        <div ng-if="!isEdit">
+                                            <input placeholder="Password" id="password" name="password" type="password" ng-minlength=6 ng-model="user.password" class="validate"
+                                                   not-empty required>
+                                            <label class="active">Password</label>
+                                            <div ng-show="form.password.$invalid && form.$submitted">
+                                                <div class="red-text">
+                                                    <div ng-show="form.password.$error.minlength">Mínimo 6 caracteres!</div>
+                                                    <div ng-show="form.password.$error.required">Campo Obrigatório!</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <p></p>
+                                    </small>
+                                </div>
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <textarea id="observation" name="observation" class="materialize-textarea" ng-model="user.observation" ng-maxlength=500 class="validate"></textarea>
+                                        <label class="active">Observações</label>
+                                        <div ng-show="form.password.$invalid && form.$submitted">
+                                            <div class="red-text">
+                                                <div ng-show="form.observation.$error.maxlength"><small>Maxímo de 500 caracteres!</small></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="input-field col s6">
+                                        <select class="browser-default" ng-model="user.authorities" ng-disabled="user.loged">
+                                            <option ng-repeat="authority in authoritiesList" value="{{authority.value}}">{{authority.name}}</option>
+                                        </select>
+                                        <label class="active">Perfil</label>
+                                    </div>
+                                    <div class="input-field col s6">
+                                        <button type="submit" class="waves-teal waves-effect btn monit-color pull-right "><i class="fa fa-check"></i> Salvar</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

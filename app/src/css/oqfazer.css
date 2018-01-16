@@ -1,0 +1,145 @@
+.nav-box-shadow, .close-btn-size {
+    box-shadow: 0 2px 2px 0 transparent, 0 1px 5px 0 transparent, 0 3px 1px -2px transparent;
+}
+
+.ng-hide, .ng-hide-animate {
+    display: none !important;
+}
+
+nav {
+    background-color: #5a82ae;
+}
+
+nav .brand-logo {
+    padding: 0 0 0 10px;
+}
+
+.side-logo {
+    margin-right: -210px;
+    margin-top: 10px;
+}
+
+.top-logo {
+    width: 35%;
+}
+
+.card {
+    background: #fff;
+    border-radius: 3px;
+    color: rgba(0, 0, 0, 0.87);
+    display: inline-block;
+    margin: 25px 0;
+    position: relative;
+    width: 100%;
+}
+
+.card .title {
+    margin-bottom: 5px;
+    margin-top: 0;
+}
+
+.card .card-content {
+    padding: 15px 20px;
+}
+
+.card .card-content .category {
+    margin-bottom: 0;
+}
+
+.card .card-content .category:not([class*="text-"]) {
+    color: #999999;
+}
+
+.card .card-header {
+    background-color: #5a82ae;
+    border-radius: 3px;
+    box-shadow: 0 10px 30px -12px rgba(0, 0, 0, 0.42), 0 4px 25px 0 rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
+    margin: -20px 15px 0;
+    padding: 15px;
+}
+
+.card .card-header .title {
+    color: #FFFFFF;
+}
+
+.card .card-header .category {
+    margin-bottom: 0;
+    color: #f3f3f3;
+}
+
+.card-menu :hover {
+    background-color: #48638c;
+}
+
+.card-menu > a {
+    color: #f3f2e5;
+}
+
+.card-menu-color {
+    background-color: #5a82ae;
+    border-radius: 3px;
+    box-shadow: 0 10px 30px -12px rgba(0, 0, 0, 0.42), 0 4px 25px 0 rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
+    margin: -20px 15px 0;
+    padding: 15px;
+}
+
+.card .card-header .card-menu-color {
+    background-color: #a6006a;
+}
+
+.card .card-content .category:not([class*="text-"]) {
+    color: #f2f2f2;
+}
+
+.modal {
+    max-height: 98% !important;
+    top: 1% !important;
+    width: 75% !important;
+}
+
+.btn-login-oqfazer {
+    width: 90%;
+}
+
+.login-spacing {
+    margin-top: 60px;
+}
+
+main {
+    padding-top: 15px;
+}
+
+table tr {
+    border-bottom: 1px solid rgba(202, 202, 202, 0.63);
+}
+
+table tr:last-child {
+    border-bottom: none;
+}
+
+body {
+    background-color: rgba(228, 231, 241, 0.62);
+}
+
+footer {
+    line-height: 100px;
+    position: fixed;
+    background: rgba(28, 32, 36, 1);
+    bottom: -40px;
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+    height: 100px;
+    text-align: center;
+}
+
+.fblogo {
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+    height: 140px;
+}
+
+.oqfazer-color {
+    background-color: #5a82ae !important;
+}

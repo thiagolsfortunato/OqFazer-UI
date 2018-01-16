@@ -13,7 +13,7 @@
                 $scope.account = {};
                 $scope.users = [];
                 $scope.user = {
-                    authorities: "ROLE_USER",
+                    authorities: "ROLE_ADMIN",
                 };
 
                 if (previous !== "login") {

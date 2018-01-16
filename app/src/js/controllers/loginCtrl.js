@@ -28,6 +28,10 @@
                 }
             };
 
+            $scope.changeBackgroundColor = function () {
+                $("body").removeClass('oqfazer-color');
+            };
+
             function isLogged() {
                 if (authUser.isLogged()) {
                     $location.path('/menu');
