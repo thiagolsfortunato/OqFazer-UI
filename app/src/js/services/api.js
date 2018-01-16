@@ -7,6 +7,72 @@
         var host = config.apiUrl();
         var baseUrl = host;
 
+        /**
+         * CRUD Category
+         */
+
+        this.saveCategory = function (category) {
+            return $http({
+                method: 'POST',
+                url: baseUrl + '/api/category',
+                data: category,
+                headers: {
+                    'Content-type': 'application/json;charset=utf-8',
+                    'X-Auth-Token': StorageHelper.getItem(KEY_STORAGE)
+                }
+            });
+        };
+
+        this.deleteCategory = function (category) {
+            return $http({
+                method: 'DELETE',
+                url: baseUrl + '/api/category',
+                data: category,
+                headers: {
+                    'Content-type': 'application/json;charset=utf-8',
+                    'X-Auth-Token': StorageHelper.getItem(KEY_STORAGE)
+                }
+            });
+        };
+
+        this.editCategory = function (category) {
+            return $http({
+                method: 'PUT',
+                url: baseUrl + '/api/category',
+                data: category,
+                headers: {
+                    'Content-type': 'application/json;charset=utf-8',
+                    'X-Auth-Token': StorageHelper.getItem(KEY_STORAGE)
+                }
+            });
+        };
+
+        this.getCategoryByName = function (category) {
+            return $http({
+                method: 'GET',
+                url: baseUrl + '/api/category',
+                params:{
+                    name : category.name
+                },
+                headers: {
+                    'X-Auth-Token': StorageHelper.getItem(KEY_STORAGE)
+                }
+            });
+        };
+
+        this.getAllCategories= function () {
+            return $http({
+                method: 'GET',
+                url: baseUrl + '/api/categories',
+                headers: {
+                    'X-Auth-Token': StorageHelper.getItem(KEY_STORAGE)
+                }
+            });
+        };
+
+        /**
+         * CRUD User
+         */
         this.saveUser = function (user) {
             return $http({
                 method: 'POST',
@@ -43,12 +109,12 @@
             });
         };
 
-        this.getUserByName = function (user_name) {
+        this.getUserByName = function (name) {
             return $http({
                 method: 'GET',
                 url: baseUrl + '/api/user',
                 params:{
-                    name : user_name.name
+                    name : name
                 },
                 headers: {
                     'X-Auth-Token': StorageHelper.getItem(KEY_STORAGE)
