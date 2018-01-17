@@ -15,7 +15,7 @@ nav .brand-logo {
 }
 
 .side-logo {
-    margin-right: -210px;
+    margin-left: 25px;
     margin-top: 10px;
 }
 
@@ -98,6 +98,7 @@ nav .brand-logo {
 }
 
 .btn-login-oqfazer {
+    background-color: #787878;
     width: 90%;
 }
 
@@ -118,6 +119,8 @@ table tr:last-child {
 }
 
 body {
+    height: 100%;
+    margin: 0;
     background-color: rgba(228, 231, 241, 0.62);
 }
 
@@ -140,6 +143,14 @@ footer {
     height: 140px;
 }
 
+.login-backgroung {
+    background-position: center;
+    background-repeat: no-repeat;
+    background: url("../img/login-background.png");
+    height: 100%;
+    background-size: cover;
+}
+
 .oqfazer-color {
-    background-color: #5a82ae !important;
+    background-color: #378181 !important;
 }

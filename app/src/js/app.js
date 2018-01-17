@@ -6,6 +6,5 @@ angular.module('app', [
     'gridster',
     'oitozero.ngSweetAlert',
     'environment',
-    'ui.mask',
-    'rw.moneymask'
+    'ui.mask'
 ]);
