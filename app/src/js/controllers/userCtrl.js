@@ -6,11 +6,12 @@
             function ($scope, $timeout, $interval, toastr, SweetAlert, userService, authUser, loginService, $location) {
 
                 var KEY_STORAGE = 'token';
+                $("body").removeClass('login-backgroung');
+                $scope.logged = StorageHelper.getItem("logged");
                 var previous = StorageHelper.getItem("previous_page");
                 var user = authUser.getUser();
 
                 $scope.isEdit = 'salvar';
-                $scope.account = {};
                 $scope.users = [];
                 $scope.user = {
                     authorities: "ROLE_ADMIN",
@@ -104,7 +105,13 @@
                     });
                 }
 
-                getAllUsers();
+                function hasAuthority(user) {
+                    user.authorities.forEach(function (authority) {
+                       if (authority.hasOwnProperty("ROLE_ADMIN")) return true;
+                    });
+                }
+
+                if ($scope.logged && hasAuthority(user)) getAllUsers();
 
                 $scope.back = function () {
                     $location.path('/menu');

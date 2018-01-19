@@ -8,6 +8,7 @@
         this.login = function (entry) {
             return api.doLogin(entry)
                 .then(function (res) {
+                    console.log(res);
                     if (res.status === 200) {
                         StorageHelper.setItem(KEY_STORAGE, res.data.token);
                     }

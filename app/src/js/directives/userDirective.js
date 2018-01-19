@@ -11,7 +11,7 @@
     angular.module('app').directive('userList', [function () {
         return {
             restrict: 'E',
-            templateUrl: 'views/partials/user/user-List.html'
+            templateUrl: 'views/partials/user/user-list.html'
         }
     }])
 }());

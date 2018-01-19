@@ -6,6 +6,7 @@
                 var KEY_STORAGE = 'token';
                 $("body").addClass('login-backgroung');
                 StorageHelper.setItem("previous_page", "login");
+                StorageHelper.setItem("logged", false);
                 $scope.entry = {};
 
                 $scope.submitLoginForm = function () {
