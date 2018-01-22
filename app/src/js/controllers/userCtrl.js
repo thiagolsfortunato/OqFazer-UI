@@ -6,7 +6,6 @@
             function ($scope, $timeout, $interval, toastr, SweetAlert, userService, authUser, loginService, $location) {
 
                 var KEY_STORAGE = 'token';
-                $("body").removeClass('login-backgroung');
                 $scope.logged = StorageHelper.getItem("logged");
                 var previous = StorageHelper.getItem("previous_page");
                 var user = authUser.getUser();
@@ -26,11 +25,12 @@
 
                 $scope.saveUser = function () {
                     if ($scope.form.$valid) {
+                        console.log($scope.user);
                         userService.saveUser($scope.user).then(function (res) {
                             if (res.status === 201) {
                                 $scope.user = res.data;
-                                refreshToken(res.data);
                                 toastr.success('Salvo com sucesso', {timeOut: 900});
+                                $location.path('/login');
                             } else if (res.status === 200) {
                                 refreshToken(res.data);
                                 toastr.success('Editado com sucesso', {timeOut: 900});

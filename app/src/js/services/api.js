@@ -144,7 +144,6 @@
                 data: user,
                 headers: {
                     'Content-type': 'application/json;charset=utf-8',
-                    'X-Auth-Token': StorageHelper.getItem(KEY_STORAGE)
                 }
             });
         };
