@@ -39,7 +39,7 @@
                                         <input placeholder="Username" id="username" name="username" type="text"
                                                ng-model="user.username" ng-minlength=4 ng-maxlength=15 class="validate"
                                                not-empty required>
-                                        <label class="active">Nome</label>
+                                        <label class="active">Username</label>
                                         <div ng-show="form.username.$invalid && form.$submitted">
                                             <div class="red-text">
                                                 <div ng-show="form.username.$error.required">Campo Obrigatório!</div>
@@ -78,7 +78,7 @@
                                         <input id="phone" name="phone" ui-mask="(99)99999-9999" type="text"
                                                ng-model="user.phone" ng-minlength=13 ng-maxlength=14 class="validate"
                                                not-empty required>
-                                        <label class="active">Conta</label>
+                                        <label class="active">Celular</label>
                                         <div ng-show="form.phone.$invalid && form.$submitted">
                                             <div class="red-text">
                                                 <div ng-show="form.phone.$error.required">Campo Obrigatório!</div>
@@ -91,6 +91,12 @@
                                         <button type="submit"
                                                 class="waves-teal waves-effect btn oqfazer-color pull-right "><i
                                                 class="fa fa-check"></i> Salvar
+                                        </button>
+                                    </div>
+                                    <div class="input-field col s6">
+                                        <button type="button" ng-if="!logged"
+                                                class="waves-teal waves-effect btn pull-right" ui-sref="home.menu">
+                                            Voltar
                                         </button>
                                     </div>
                                 </div>

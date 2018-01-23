@@ -6,7 +6,7 @@
             function ($scope, $timeout, $interval, toastr, SweetAlert, userService, authUser, loginService, $location) {
 
                 var KEY_STORAGE = 'token';
-                $scope.logged = StorageHelper.getItem("logged");
+                $scope.logged = authUser.isLogged();
                 var previous = StorageHelper.getItem("previous_page");
                 var user = authUser.getUser();
 

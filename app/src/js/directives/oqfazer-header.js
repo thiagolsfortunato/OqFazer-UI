@@ -4,7 +4,8 @@
     angular.module('app').directive('oqfazerHeader', [ function () {
         return {
             restrict: 'E',
-            templateUrl: 'views/partials/header.html'
-        }
+            templateUrl: 'views/partials/header.html',
+            controller: 'headerCtrl'
+        };
     }]);
 }());

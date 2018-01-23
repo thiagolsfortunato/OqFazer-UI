@@ -1,7 +1,39 @@
-﻿<div class="navbar-fixed">
+﻿<ul id="slide-out" class="side-nav watermark" >
+    <li>
+        <div class="userView center">
+            <div class="oqfazer-color background"></div>
+            <a href=""><img class="center" src="src/img/logo.png"></a>
+            <div class="white-text">
+                {{ username }}
+            </div>
+        </div>
+    </li>
+    <li ng-if="isAdmin" >
+        <a ui-sref="home.category" ng-click="hideSideNav(); selectMenu('category')">Categorias</a>
+    </li>
+    <li ng-if="isAdmin">
+        <a ui-sref="home.city" ng-click="hideSideNav(); selectMenu('city')">Cidades</a>
+    </li>
+    <li ng-if="isAdmin">
+        <a ui-sref="home.region" ng-click="hideSideNav(); selectMenu('region')">Regiões</a>
+    </li>
+    <li ng-if="isAdmin">
+        <a ui-sref="home.user" ng-click="hideSideNav(); selectMenu('user')">Usuários</a>
+    </li>
+    <li ng-if="isAdmin">
+        <a ui-sref="home.event" ng-click="hideSideNav(); selectMenu('event')">Eventos</a>
+    </li>
+    <li><div class="divider"></div></li>
+    <li><a href="" ng-click="logOut()">Sair</a></li>
+</ul>
+
+<a href="#" data-activates="slide-out" class="button-collapse hide">Menu</a>
+
+<div class="navbar-fixed">
     <nav class="oqfazer-color">
         <div class="nav-wrapper">
-            <a class="side-logo pull-left" href="#!">OqFazer?</a>
+            <a ng-if="logged" ng-click="showSideNav()" href="" class="brand-logo"> <i class="fa fa-bars"></i></a>
+            <a class="side-header pull-right" href="#!">OqFazer?</a>
         </div>
     </nav>
 </div>
