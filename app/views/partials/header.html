@@ -1,27 +1,30 @@
-﻿<ul id="slide-out" class="side-nav watermark" >
+﻿<ul id="slide-out" class="side-nav">
     <li>
         <div class="userView center">
             <div class="oqfazer-color background"></div>
             <a href=""><img class="center" src="src/img/logo.png"></a>
-            <div class="white-text">
-                {{ username }}
-            </div>
+            <div class="white-text" ng-if="logged">{{ username }}</div>
         </div>
     </li>
-    <li ng-if="isAdmin" >
-        <a ui-sref="home.category" ng-click="hideSideNav(); selectMenu('category')">Categorias</a>
-    </li>
+    <li><a ui-sref="home.events">Eventos</a></li>
+    <li><a ui-sref="home.events" ng-click="myEvents(user)">Meus Eventos</a></li>
+    <li><a ui-sref="home.events" ng-click="myParticipations(user)">Minhas Participacoes</a></li>
+    <li><a ui-sref="home.user" ng-click="myProfile(user)">Perfil</a></li>
     <li ng-if="isAdmin">
-        <a ui-sref="home.city" ng-click="hideSideNav(); selectMenu('city')">Cidades</a>
-    </li>
-    <li ng-if="isAdmin">
-        <a ui-sref="home.region" ng-click="hideSideNav(); selectMenu('region')">Regiões</a>
-    </li>
-    <li ng-if="isAdmin">
-        <a ui-sref="home.user" ng-click="hideSideNav(); selectMenu('user')">Usuários</a>
-    </li>
-    <li ng-if="isAdmin">
-        <a ui-sref="home.event" ng-click="hideSideNav(); selectMenu('event')">Eventos</a>
+        <ul class="collapsible collapsible-accordion">
+            <li>
+                <a class="collapsible-header">Cadastros</a>
+                <div class="collapsible-body">
+                    <ul>
+                        <li><a ui-sref="home.category" ng-click="hideSideNav(); selectMenu('category')">Categorias</a></li>
+                        <li><a ui-sref="home.city" ng-click="hideSideNav(); selectMenu('city')">Cidades</a></li>
+                        <li><a ui-sref="home.region" ng-click="hideSideNav(); selectMenu('region')">Regiões</a></li>
+                        <li><a ui-sref="home.user" ng-click="hideSideNav(); selectMenu('user')">Usuários</a></li>
+                        <li><a ui-sref="home.event" ng-click="hideSideNav(); selectMenu('event')">Eventos</a></li>
+                    </ul>
+                </div>
+            </li>
+        </ul>
     </li>
     <li><div class="divider"></div></li>
     <li><a href="" ng-click="logOut()">Sair</a></li>
@@ -34,6 +37,7 @@
         <div class="nav-wrapper">
             <a ng-if="logged" ng-click="showSideNav()" href="" class="brand-logo"> <i class="fa fa-bars"></i></a>
             <a class="side-header pull-right" href="#!">OqFazer?</a>
+            <a class="side-header pull-right" ng-click="isLogged()" ui-sref="login"><img src="src/img/login.png" alt=""></a>
         </div>
     </nav>
 </div>

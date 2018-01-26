@@ -11,7 +11,7 @@
     angular.module('app').directive('eventList', [function () {
         return {
             restrict: 'E',
-            templateUrl: 'views/partials/event/event-List.html'
+            templateUrl: 'views/partials/event/event-list.html'
         }
     }])
 }());

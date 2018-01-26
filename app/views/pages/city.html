@@ -1,5 +1,9 @@
 <div class="container">
-    <city-list></city-list>
+    <div ng-show="logged && isAdmin">
+        <city-list></city-list>
+    </div>
 
-    <city-form></city-form>
+    <div ng-show="(cityForm || !logged) && isAdmin">
+        <city-form></city-form>
+    </div>
 </div>

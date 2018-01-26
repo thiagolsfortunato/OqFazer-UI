@@ -7,6 +7,7 @@
 
                 $scope.categories = [];
                 $scope.category = {};
+                $scope.categoryForm = false;
 
                 $scope.saveCategory = function () {
                     if ($scope.form.$valid) {
@@ -83,9 +84,15 @@
 
                 getAllCategories();
 
-                $scope.back = function () {
-                    $location.path('/menu');
+                $scope.showCategoryForm = function () {
+                    clearForm();
+                    $scope.categoryForm = true;
                 };
+
+                function clearForm() {
+                    $scope.form = {};
+                    $scope.category = {};
+                }
 
             }]);
 }());

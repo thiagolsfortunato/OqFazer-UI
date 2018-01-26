@@ -40,6 +40,10 @@ nav .brand-logo {
     width: 35%;
 }
 
+.close-btn-size {
+    padding: 0 10px;
+}
+
 .card {
     background: #fff;
     border-radius: 3px;

@@ -1,5 +1,9 @@
 <div class="container">
-    <category-list></category-list>
+    <div ng-show="logged && isAdmin">
+        <category-list></category-list>
+    </div>
 
-    <category-form></category-form>
+    <div ng-show="(categoryForm || !logged) && isAdmin">
+        <category-form></category-form>
+    </div>
 </div>

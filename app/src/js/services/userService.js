@@ -31,7 +31,7 @@
             return api.getAllUsers().then(function (res) {
                 return res;
             })
-        }
+        };
 
     }]);
 }());

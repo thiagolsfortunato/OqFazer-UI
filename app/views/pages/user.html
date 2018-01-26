@@ -1,5 +1,10 @@
 <div class="container">
-    <user-form></user-form>
+    <div ng-show="logged && isAdmin">
+        <user-list></user-list>
+    </div>
 
-    <user-list></user-list>
+    <div ng-show="userForm || !logged">
+        <user-form></user-form>
+    </div>
+
 </div>

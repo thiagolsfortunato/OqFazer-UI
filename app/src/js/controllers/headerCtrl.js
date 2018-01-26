@@ -7,12 +7,18 @@
     'use strict';
 
     angular.module('app')
-        .controller('headerCtrl', ['$scope', '$location', 'authUser', '$state', function ($scope, $location, authUser, $state) {
+        .controller('headerCtrl', ['$scope', '$location', 'authUser', '$state', 'loginService', 'eventService', 'userService', function ($scope, $location, authUser, $state, loginService, eventService, userService ) {
 
             var KEY_LOGGED = 'logged';
             var KEY_SESSION = 'sessionId';
             var KEY_STORAGE = 'token';
+            var user = authUser.getUser();
+
+            $scope.isAdmin = loginService.isAdmin(user);
+            $scope.user = angular.copy(user);
             $scope.logged = authUser.isLogged();
+
+            if($scope.logged) $scope.username = user.username;
 
             $(document).ready(function () {
                 $(".button-collapse").sideNav();
@@ -36,22 +42,25 @@
 
             $scope.selectMenu();
 
-            var user = authUser.getUser();
-            if (typeof  user !== 'undefined' && user.hasOwnProperty('authority') && user !== null) {
-                $scope.isAdmin = user.authority === "ROLE_ADMIN";
-                $scope.username = user.username;
-            }
+            $scope.myEvents =  function (user) {
+                eventService.myEvents(user);
+            };
+
+            $scope.myParticipation =  function (user) {
+                eventService.myParticipation(user);
+            };
+
+            $scope.myProfile = function (user) {
+                userService.myProfile(user);
+            };
 
             $scope.logOut = function () {
-                var parsed = JSON.stringify({
-                    sessionId: StorageHelper.getItem(KEY_SESSION)
-                });
-
                 $scope.hideSideNav();
                 StorageHelper.removeItem(KEY_LOGGED);
                 StorageHelper.removeItem(KEY_SESSION);
                 StorageHelper.removeItem(KEY_STORAGE);
                 authUser.removeCookies();
+                location.reload(true);
                 $location.path('/');
             };
         }]);

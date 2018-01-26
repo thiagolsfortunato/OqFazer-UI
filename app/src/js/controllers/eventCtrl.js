@@ -5,5 +5,7 @@
         .controller('eventCtrl', ['$scope', '$timeout', '$interval', 'toastr', 'SweetAlert', 'eventService', 'authUser', '$location',
             function ($scope, $timeout, $interval, toastr, SweetAlert, eventService, authUser, $location) {
 
+            $("body").addClass('login-backgroung');
+
             }]);
 }());

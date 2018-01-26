@@ -8,7 +8,7 @@
 
     angular.module('app')
         .config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
-            $urlRouterProvider.otherwise("/login");
+            $urlRouterProvider.otherwise("/events");
             $stateProvider
                 .state('login', {
                     url: "/login",
@@ -20,11 +20,6 @@
                     url: "",
                     templateUrl: "views/home.html"
                 })
-                .state('home.menu', {
-                    url: "/menu",
-                    templateUrl: "views/pages/menu.html",
-                    controller: "menuCtrl"
-                })
                 .state('home.user', {
                     url: "/user",
                     templateUrl: "views/pages/user.html",
@@ -33,12 +28,17 @@
                 .state('home.category', {
                     url: "/category",
                     templateUrl: "views/pages/category.html",
-                    controller: "balanceCtrl"
+                    controller: "categoryCtrl"
                 })
                 .state('home.event', {
                     url: "/event",
                     templateUrl: "views/pages/event.html",
-                    controller: "categoryCtrl"
+                    controller: "eventCtrl"
+                })
+                .state('home.events', {
+                    url: "/events",
+                    templateUrl: "views/pages/event.html",
+                    controller: "eventCtrl"
                 })
                 .state('home.city', {
                     url: "/city",
@@ -50,5 +50,6 @@
                     templateUrl: "views/pages/region.html",
                     controller: "regionCtrl"
                 });
+
         }]);
 }());

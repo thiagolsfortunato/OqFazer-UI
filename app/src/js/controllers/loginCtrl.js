@@ -17,7 +17,7 @@
                                 authUser.setLogged(true);
                                 $scope.changeBackgroundColor();
                                 toastr.success("Login realizado com sucesso!", {timeOut: 900});
-                                $location.path('/menu');
+                                $location.path('/events');
                             }).catch(function (error) {
                             if (error.status === 401) {
                                 toastr.error('Usuário ou Senha Inválido!', {timeOut: 900});
@@ -35,7 +35,7 @@
 
                 function isLogged() {
                     if (authUser.isLogged()) {
-                        $location.path('/menu');
+                        $location.path('/events');
                     } else {
                         StorageHelper.removeItem(KEY_STORAGE);
                         authUser.setLogged(false);

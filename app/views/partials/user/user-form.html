@@ -4,6 +4,11 @@
             <div class="col-md-12">
                 <div class="card z-depth-4">
                     <div class="card-header">
+                        <div ng-show="logged">
+                            <button type="button" ng-click="closeUserForm()"
+                                    class="waves-teal waves-effect btn btn-small pull-right monit-color close-btn-size"><span
+                                    class="fa fa-close white-text"></span></button>
+                        </div>
                         <h5 class="title">Formulário de Cadastro</h5>
                         <p class="category">Cadastro de Usuário</p>
                     </div>
@@ -44,8 +49,7 @@
                                             <div class="red-text">
                                                 <div ng-show="form.username.$error.required">Campo Obrigatório!</div>
                                                 <div ng-show="form.username.$error.minlength">Mínimo 4 caracteres!</div>
-                                                <div ng-show="form.username.$error.maxlength">Máximo 15 caracteres!
-                                                </div>
+                                                <div ng-show="form.username.$error.maxlength">Máximo 15 caracteres!</div>
                                             </div>
                                         </div>
                                     </small>
@@ -95,7 +99,7 @@
                                     </div>
                                     <div class="input-field col s6">
                                         <button type="button" ng-if="!logged"
-                                                class="waves-teal waves-effect btn pull-right" ui-sref="home.menu">
+                                                class="waves-teal waves-effect btn pull-right" ui-sref="login">
                                             Voltar
                                         </button>
                                     </div>

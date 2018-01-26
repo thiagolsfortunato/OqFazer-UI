@@ -1,5 +1,9 @@
 <div class="container">
-    <region-list></region-list>
+    <div ng-show="logged && isAdmin">
+        <region-list></region-list>
+    </div>
 
-    <region-form></region-form>
+    <div ng-show="(regionForm || !logged) && isAdmin">
+        <region-form></region-form>
+    </div>
 </div>

@@ -2,30 +2,34 @@
     'use strict';
 
     angular.module('app')
-        .controller('userCtrl', ['$scope', '$timeout', '$interval', 'toastr', 'SweetAlert', 'userService', 'authUser', 'loginService', '$location',
-            function ($scope, $timeout, $interval, toastr, SweetAlert, userService, authUser, loginService, $location) {
+        .controller('userCtrl', ['$scope', '$timeout', '$interval', 'toastr', 'SweetAlert', 'userService', 'authUser', 'loginService', '$location','$anchorScroll',
+            function ($scope, $timeout, $interval, toastr, SweetAlert, userService, authUser, loginService, $location, $anchorScroll) {
 
                 var KEY_STORAGE = 'token';
-                $scope.logged = authUser.isLogged();
                 var previous = StorageHelper.getItem("previous_page");
                 var user = authUser.getUser();
+                var timeoutTime = 500;
 
+                $scope.isAdmin = loginService.isAdmin(user);
+                $scope.logged = authUser.isLogged();
+                $scope.userForm = false;
                 $scope.isEdit = 'salvar';
                 $scope.users = [];
+
                 $scope.user = {
-                    authorities: "ROLE_ADMIN",
+                    authorities: "ROLE_USER",
                 };
 
                 if (previous !== "login") {
                     authUser.authorize();
                     $scope.isEdit = 'editar';
+
                 }
 
-                StorageHelper.setItem("previous_page", "user");
-
                 $scope.saveUser = function () {
+                    console.log($scope.form.$valid);
                     if ($scope.form.$valid) {
-                        console.log($scope.user);
+                        console.log("AQUI");
                         userService.saveUser($scope.user).then(function (res) {
                             if (res.status === 201) {
                                 $scope.user = res.data;
@@ -45,6 +49,14 @@
                     }
                 };
 
+                $scope.editUser = function (user) {
+                    $scope.isEdit = true;
+                    $scope.userForm = true;
+                    $scope.user = angular.copy(user);
+                    $scope.user.password = "";
+                    $timeout(anchorBot, timeoutTime);
+                };
+
                 $scope.deleteUser = function (user) {
                     SweetAlert.swal({
                         title: 'Remover?',
@@ -59,6 +71,7 @@
                         if (isConfirm) {
                             userService.deleteUser(user).then(function (res) {
                                 if (res.status === 200) {
+                                    $scope.users.splice($scope.users.indexOf(user), 1);
                                     toastr.success('Usuário deletado com sucesso', {timeOut: 900});
                                 } else {
                                     toastr.error('Não foi possível deletar o usuário', {timeOut: 900});
@@ -89,29 +102,23 @@
                 };
 
                 function getAllUsers() {
-                    userService.getAllUsers().then(function (users) {
-                        var userList = [];
-                        users.forEach(function (user) {
-
-                            var toShowUser = angular.copy(user);
-                            toShowUser.loged = isLoggedUser(user);
-                            toShowUser.toShowRole = toShowRole(user);
-                            userList.push(toShowUser);
-
+                    if(typeof user !== "undefined") {
+                        userService.getAllUsers().then(function (users) {
+                            if(users.status === 200) {
+                                var userList = [];
+                                users.data.forEach(function (user) {
+                                    console.log(user);
+                                    var toShowUser = angular.copy(user);
+                                    toShowUser.loged = isLoggedUser(user);
+                                    userList.push(toShowUser);
+                                });
+                                $scope.users = userList;
+                            }
+                        }).catch(function () {
+                            toastr.error('Ocorreu um problema ao carregar os usuários', {timeOut: 900});
                         });
-                        $scope.users = userList;
-                    }).catch(function () {
-                        toastr.error('Ocorreu um problema ao carregar os usuários', {timeOut: 900});
-                    });
+                    }
                 }
-
-                function hasAuthority(user) {
-                    user.authorities.forEach(function (authority) {
-                       if (authority.hasOwnProperty("ROLE_ADMIN")) return true;
-                    });
-                }
-
-                if ($scope.logged && hasAuthority(user)) getAllUsers();
 
                 $scope.back = function () {
                     $location.path('/menu');
@@ -123,6 +130,37 @@
                     authUser.removeCookies();
                     user = "";
                     $location.path('/');
+                };
+
+                if ($scope.logged && user.authority === "ROLE_ADMIN") getAllUsers();
+
+                $scope.showUserForm = function () {
+                    console.log($scope.form);
+                    clearForm();
+                    console.log($scope.form);
+                    $scope.userForm = true;
+                };
+
+                function anchorBot() {
+                    $location.hash('divForm');
+                    $anchorScroll();
+                }
+
+                $scope.closeUserForm = function () {
+                    $scope.userForm = false;
+                };
+
+                function clearForm() {
+                    $scope.user = {};
+                    $scope.form.$setPristine();
+                }
+
+                function isLoggedUser(user) {
+                    if (typeof authUser.getUser() !== 'undefined' && authUser.getUser() !== null) {
+                        var loggedUser = authUser.getUser();
+                        return user.username === loggedUser.username;
+                    }
+                    return false;
                 }
 
             }]);

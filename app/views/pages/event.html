@@ -1,5 +1,7 @@
 <div class="container">
     <event-list></event-list>
 
-    <event-form></event-form>
+    <div ng-show="eventForm || logged">
+        <event-form></event-form>
+    </div>
 </div>

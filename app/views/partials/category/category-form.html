@@ -1,10 +1,76 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-
-</body>
-</html>
+<div class="content" id="divForm">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card z-depth-4">
+                    <div class="card-header">
+                        <div ng-show="logged">
+                            <button type="button" ng-click="closeCategoryForm()"
+                                    class="waves-teal waves-effect btn btn-small pull-right monit-color close-btn-size"><span
+                                    class="fa fa-close white-text"></span></button>
+                        </div>
+                        <h5 class="title">Formulário de Cadastro</h5>
+                        <p class="category">Cadastro de Category</p>
+                    </div>
+                    <div class="card-content">
+                        <div class="row">
+                            <form name="form" class="col s12" ng-submit="saveCategory()" novalidate>
+                                <div class="row">
+                                    <small class="input-field col s6">
+                                        <input placeholder="Nome" id="name" name="name" type="text"
+                                               ng-model="category.name"
+                                               ng-minlength=4 ng-maxlength=15 class="validate" not-empty required>
+                                        <label class="active">Nome</label>
+                                        <div ng-show="form.name.$invalid && form.$submitted">
+                                            <div class="red-text">
+                                                <div ng-show="form.name.$error.required">Campo Obrigatório!</div>
+                                                <div ng-show="form.name.$error.minlength">Mínimo 4 caracteres!</div>
+                                                <div ng-show="form.name.$error.maxlength">Máximo 15 caracteres!</div>
+                                            </div>
+                                        </div>
+                                    </small>
+                                    <small class="input-field col s6">
+                                        <input placeholder="Descrição" id="description" name="description" type="text"
+                                               ng-model="category.description" ng-minlength=4 ng-maxlength=15
+                                               class="validate"
+                                               not-empty required>
+                                        <label class="active">Descrição</label>
+                                        <div ng-show="form.username.$invalid && form.$submitted">
+                                            <div class="red-text">
+                                                <div ng-show="form.username.$error.required">Campo Obrigatório!</div>
+                                                <div ng-show="form.username.$error.minlength">Mínimo 4 caracteres!</div>
+                                                <div ng-show="form.username.$error.maxlength">Máximo 15 caracteres!
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </small>
+                                </div>
+                                <div class="row">
+                                    <div class="input-field col s6">
+                                        <label class="active">Categoria Pai</label>
+                                        <select id="parent" name="parent"
+                                                ng-model="category.categorySelected" class="select-dropdown"
+                                                ng-options="category as category.name for category in categories">
+                                        </select>
+                                    </div>
+                                    <div class="input-field col s6">
+                                        <button type="submit"
+                                                class="waves-teal waves-effect btn oqfazer-color pull-right "><i
+                                                class="fa fa-check"></i> Salvar
+                                        </button>
+                                    </div>
+                                    <div class="input-field col s6">
+                                        <button type="button" ng-if="!logged"
+                                                class="waves-teal waves-effect btn pull-right" ui-sref="login">
+                                            Voltar
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
