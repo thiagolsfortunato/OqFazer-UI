@@ -5,6 +5,8 @@
         .controller('userCtrl', ['$scope', '$timeout', '$interval', 'toastr', 'SweetAlert', 'userService', 'authUser', 'loginService', '$location','$anchorScroll',
             function ($scope, $timeout, $interval, toastr, SweetAlert, userService, authUser, loginService, $location, $anchorScroll) {
 
+                $("body").addClass('login-backgroung');
+
                 var KEY_STORAGE = 'token';
                 var previous = StorageHelper.getItem("previous_page");
                 var user = authUser.getUser();
@@ -29,14 +31,17 @@
                 $scope.saveUser = function () {
                     console.log($scope.form.$valid);
                     if ($scope.form.$valid) {
-                        console.log("AQUI");
                         userService.saveUser($scope.user).then(function (res) {
                             if (res.status === 201) {
-                                $scope.user = res.data;
+                                $scope.users.push(res.data);
                                 toastr.success('Salvo com sucesso', {timeOut: 900});
-                                $location.path('/login');
+                                if(!$scope.logged) $location.path('/login');
                             } else if (res.status === 200) {
-                                refreshToken(res.data);
+                                var position = findPosition($scope.users, res.data.id);
+                                if ($scope.user.loged) {
+                                    refreshToken(res.data);
+                                }
+                                $scope.users[position] = res.data;
                                 toastr.success('Editado com sucesso', {timeOut: 900});
                             } else {
                                 toastr.error('Não foi possível salvar o usuário', {timeOut: 900});
@@ -45,6 +50,8 @@
                             if (res.status === 409) {
                                 toastr.error('Usuário Existente!', {timeOut: 900});
                             }
+                        }).finally(function () {
+                            $scope.closeUserForm();
                         })
                     }
                 };
@@ -127,7 +134,6 @@
                 $scope.logout = function () {
                     StorageHelper.removeItem(KEY_STORAGE);
                     authUser.setLogged(false);
-                    authUser.removeCookies();
                     user = "";
                     $location.path('/');
                 };
@@ -153,6 +159,14 @@
                 function clearForm() {
                     $scope.user = {};
                     $scope.form.$setPristine();
+                }
+
+                function findPosition(list, id) {
+                    for (var i = 0; i < list.length; i++) {
+                        if (list[i].id === id) {
+                            return i;
+                        }
+                    }
                 }
 
                 function isLoggedUser(user) {

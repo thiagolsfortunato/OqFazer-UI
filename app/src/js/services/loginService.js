@@ -26,7 +26,6 @@
                         user = res.data;
                         StorageHelper.setItem(KEY_STORAGE, res.data.token);
                     }
-
                     return user;
                 }).catch(function (err) {
                     console.log(err);

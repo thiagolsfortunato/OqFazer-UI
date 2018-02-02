@@ -14,52 +14,36 @@
             var KEY_STORAGE = 'token';
             var user = authUser.getUser();
 
-            $scope.isAdmin = loginService.isAdmin(user);
             $scope.user = angular.copy(user);
             $scope.logged = authUser.isLogged();
 
+            $scope.isAdmin = loginService.isAdmin(user);
             if($scope.logged) $scope.username = user.username;
 
-            $(document).ready(function () {
-                $(".button-collapse").sideNav();
-
-                $('.collapsible').collapsible();
+            $(document).ready(function(){
+                $('.dropdown-button').dropdown();
             });
 
-            $scope.showSideNav = function () {
-                $('.button-collapse').sideNav('show');
-            };
-
-            $scope.hideSideNav = function () {
-                $('.button-collapse').sideNav('hide');
-            };
-
-            $scope.selectMenu = function (select) {
-                if (typeof select === "undefined") {
-                    var select = $state.current.name.split('.')[1];
-                }
-            };
-
-            $scope.selectMenu();
-
-            $scope.myEvents =  function (user) {
+            $scope.myEvents =  function () {
                 eventService.myEvents(user);
             };
 
-            $scope.myParticipation =  function (user) {
-                eventService.myParticipation(user);
+            $scope.myParticipations =  function () {
+                eventService.myParticipations(user);
             };
 
-            $scope.myProfile = function (user) {
+            $scope.myProfile = function () {
                 userService.myProfile(user);
             };
 
+            $scope.isLogged = function () {
+                return authUser.isLogged();
+            };
+
             $scope.logOut = function () {
-                $scope.hideSideNav();
                 StorageHelper.removeItem(KEY_LOGGED);
                 StorageHelper.removeItem(KEY_SESSION);
                 StorageHelper.removeItem(KEY_STORAGE);
-                authUser.removeCookies();
                 location.reload(true);
                 $location.path('/');
             };

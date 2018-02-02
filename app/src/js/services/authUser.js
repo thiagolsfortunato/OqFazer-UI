@@ -25,12 +25,6 @@
                     $location.path('/');
                 }
             };
-
-            this.removeCookies = function () {
-                $cookies.remove('logged');
-                $cookies.remove('connected');
-                $cookies.remove('user');
-            };
         }]);
 }());
 

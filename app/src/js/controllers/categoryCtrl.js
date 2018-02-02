@@ -5,6 +5,8 @@
         .controller('categoryCtrl', ['$scope', '$timeout', '$interval', 'toastr', 'SweetAlert', 'categoryService', 'authUser', '$location',
             function ($scope, $timeout, $interval, toastr, SweetAlert, categoryService, authUser, $location) {
 
+                $("body").addClass('login-backgroung');
+
                 $scope.categories = [];
                 $scope.category = {};
                 $scope.categoryForm = false;

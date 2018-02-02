@@ -5,6 +5,7 @@
 
                 var KEY_STORAGE = 'token';
                 $("body").addClass('login-backgroung');
+
                 StorageHelper.setItem("previous_page", "login");
                 StorageHelper.setItem("logged", false);
                 $scope.entry = {};
@@ -39,7 +40,6 @@
                     } else {
                         StorageHelper.removeItem(KEY_STORAGE);
                         authUser.setLogged(false);
-                        authUser.removeCookies();
                     }
                 }
 

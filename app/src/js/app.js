@@ -3,7 +3,6 @@ angular.module('app', [
     'ngCookies',
     'ngAnimate',
     'toastr',
-    'gridster',
     'oitozero.ngSweetAlert',
     'environment',
     'ui.mask'
