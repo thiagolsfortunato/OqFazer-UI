@@ -185,6 +185,19 @@
             });
         };
 
+        this.getUserByUsername = function (username) {
+            return $http({
+                method: 'GET',
+                url: baseUrl + '/api/username',
+                params:{
+                    username : username
+                },
+                headers: {
+                    'X-Auth-Token': StorageHelper.getItem(KEY_STORAGE)
+                }
+            });
+        };
+
         this.getAllUsers = function () {
             return $http({
                 method: 'GET',

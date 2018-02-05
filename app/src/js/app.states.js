@@ -25,6 +25,11 @@
                     templateUrl: "views/pages/user.html",
                     controller: "userCtrl"
                 })
+                .state('home.profile', {
+                    url: "/user",
+                    templateUrl: "views/pages/profile.html",
+                    controller: "profileCtrl"
+                })
                 .state('home.category', {
                     url: "/category",
                     templateUrl: "views/pages/category.html",

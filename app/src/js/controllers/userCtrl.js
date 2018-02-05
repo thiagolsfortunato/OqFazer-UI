@@ -2,8 +2,8 @@
     'use strict';
 
     angular.module('app')
-        .controller('userCtrl', ['$scope', '$timeout', '$interval', 'toastr', 'SweetAlert', 'userService', 'authUser', 'loginService', '$location','$anchorScroll',
-            function ($scope, $timeout, $interval, toastr, SweetAlert, userService, authUser, loginService, $location, $anchorScroll) {
+        .controller('userCtrl', ['$scope', '$rootScope', '$timeout', 'toastr', 'SweetAlert', 'userService', 'authUser', 'loginService', '$location','$anchorScroll',
+            function ($scope, $rootScope, $timeout, toastr, SweetAlert, userService, authUser, loginService, $location, $anchorScroll) {
 
                 $("body").addClass('login-backgroung');
 
@@ -12,6 +12,7 @@
                 var user = authUser.getUser();
                 var timeoutTime = 500;
 
+                $scope.myProfile = false;
                 $scope.isAdmin = loginService.isAdmin(user);
                 $scope.logged = authUser.isLogged();
                 $scope.userForm = false;
@@ -29,7 +30,6 @@
                 }
 
                 $scope.saveUser = function () {
-                    console.log($scope.form.$valid);
                     if ($scope.form.$valid) {
                         userService.saveUser($scope.user).then(function (res) {
                             if (res.status === 201) {
@@ -39,7 +39,7 @@
                             } else if (res.status === 200) {
                                 var position = findPosition($scope.users, res.data.id);
                                 if ($scope.user.loged) {
-                                    refreshToken(res.data);
+                                    loginService.refreshToken(res.data);
                                 }
                                 $scope.users[position] = res.data;
                                 toastr.success('Editado com sucesso', {timeOut: 900});
@@ -48,7 +48,8 @@
                             }
                         }).catch(function (res) {
                             if (res.status === 409) {
-                                toastr.error('Usuário Existente!', {timeOut: 900});
+                                $scope.user.username = "";
+                                toastr.error('Username já cadastrado!', {timeOut: 900});
                             }
                         }).finally(function () {
                             $scope.closeUserForm();
@@ -114,7 +115,6 @@
                             if(users.status === 200) {
                                 var userList = [];
                                 users.data.forEach(function (user) {
-                                    console.log(user);
                                     var toShowUser = angular.copy(user);
                                     toShowUser.loged = isLoggedUser(user);
                                     userList.push(toShowUser);
@@ -141,9 +141,7 @@
                 if ($scope.logged && user.authority === "ROLE_ADMIN") getAllUsers();
 
                 $scope.showUserForm = function () {
-                    console.log($scope.form);
                     clearForm();
-                    console.log($scope.form);
                     $scope.userForm = true;
                 };
 

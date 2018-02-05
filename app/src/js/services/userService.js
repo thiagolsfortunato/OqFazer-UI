@@ -33,5 +33,11 @@
             })
         };
 
+        this.getUserByUsername = function (username) {
+            return api.getUserByUsername(username).then(function (res) {
+                return res;
+            })
+        }
+
     }]);
 }());

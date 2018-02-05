@@ -16,7 +16,6 @@
                             .then(function (data) {
                                 authUser.setUser(data);
                                 authUser.setLogged(true);
-                                $scope.changeBackgroundColor();
                                 toastr.success("Login realizado com sucesso!", {timeOut: 900});
                                 $location.path('/events');
                             }).catch(function (error) {
@@ -28,10 +27,6 @@
                             }
                         });
                     }
-                };
-
-                $scope.changeBackgroundColor = function () {
-                    $("body").removeClass('oqfazer-color');
                 };
 
                 function isLogged() {

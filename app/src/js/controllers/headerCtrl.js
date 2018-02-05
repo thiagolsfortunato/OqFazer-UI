@@ -7,7 +7,7 @@
     'use strict';
 
     angular.module('app')
-        .controller('headerCtrl', ['$scope', '$location', 'authUser', '$state', 'loginService', 'eventService', 'userService', function ($scope, $location, authUser, $state, loginService, eventService, userService ) {
+        .controller('headerCtrl', ['$scope', '$rootScope', '$location', 'authUser', 'loginService', 'eventService', 'userService', function ($scope, $rootScope, $location, authUser, loginService, eventService, userService ) {
 
             var KEY_LOGGED = 'logged';
             var KEY_SESSION = 'sessionId';
@@ -30,14 +30,6 @@
 
             $scope.myParticipations =  function () {
                 eventService.myParticipations(user);
-            };
-
-            $scope.myProfile = function () {
-                userService.myProfile(user);
-            };
-
-            $scope.isLogged = function () {
-                return authUser.isLogged();
             };
 
             $scope.logOut = function () {

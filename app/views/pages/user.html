@@ -1,9 +1,9 @@
 <div class="container">
-    <div ng-show="logged && isAdmin">
+    <div ng-show="(logged && isAdmin)">
         <user-list></user-list>
     </div>
 
-    <div ng-show="userForm || !logged">
+    <div ng-show="(userForm || !logged)">
         <user-form></user-form>
     </div>
 
