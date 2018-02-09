@@ -2,15 +2,14 @@
     'use strict';
 
     angular.module('app')
-        .controller('userCtrl', ['$scope', '$rootScope', '$timeout', 'toastr', 'SweetAlert', 'userService', 'authUser', 'loginService', '$location','$anchorScroll',
-            function ($scope, $rootScope, $timeout, toastr, SweetAlert, userService, authUser, loginService, $location, $anchorScroll) {
+        .controller('userCtrl', ['$scope', '$rootScope', '$timeout', 'toastr', 'SweetAlert', 'userService', 'authUser', 'loginService', '$location',
+            function ($scope, $rootScope, $timeout, toastr, SweetAlert, userService, authUser, loginService, $location) {
 
-                $("body").addClass('login-backgroung');
+                $("body").addClass('oqfazer-background');
 
                 var KEY_STORAGE = 'token';
                 var previous = StorageHelper.getItem("previous_page");
                 var user = authUser.getUser();
-                var timeoutTime = 500;
 
                 $scope.myProfile = false;
                 $scope.isAdmin = loginService.isAdmin(user);
@@ -20,7 +19,7 @@
                 $scope.users = [];
 
                 $scope.user = {
-                    authorities: "ROLE_USER",
+                    authorities: "ROLE_USER"
                 };
 
                 if (previous !== "login") {
@@ -62,7 +61,6 @@
                     $scope.userForm = true;
                     $scope.user = angular.copy(user);
                     $scope.user.password = "";
-                    $timeout(anchorBot, timeoutTime);
                 };
 
                 $scope.deleteUser = function (user) {
@@ -144,11 +142,6 @@
                     clearForm();
                     $scope.userForm = true;
                 };
-
-                function anchorBot() {
-                    $location.hash('divForm');
-                    $anchorScroll();
-                }
 
                 $scope.closeUserForm = function () {
                     $scope.userForm = false;

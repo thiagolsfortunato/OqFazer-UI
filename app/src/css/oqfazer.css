@@ -8,7 +8,12 @@
     src: url("fonts/Hastoler-Regular-Italic.otf") format("opentype");
 }
 
-.nav-box-shadow, .close-btn-size {
+@font-face {
+    font-family: ShadowRegular;
+    src: url("fonts/ShadowsIntoLightTwo-Regular.ttf") format("truetype");
+}
+
+.nav-box-shadow, .btn-size {
     box-shadow: 0 2px 2px 0 transparent, 0 1px 5px 0 transparent, 0 3px 1px -2px transparent;
 }
 
@@ -48,7 +53,7 @@ nav .brand-logo {
     width: 35%;
 }
 
-.close-btn-size {
+.btn-size {
     padding: 0 10px;
 }
 
@@ -62,7 +67,15 @@ nav .brand-logo {
     width: 100%;
 }
 
+.card-category {
+    margin: 25px 250px;
+    width: 50%;
+}
+
 .card .title {
+    font-family: ShadowRegular;
+    font-style: inherit;
+    font-size: 35px;
     margin-bottom: 5px;
     margin-top: 0;
 }
@@ -80,7 +93,7 @@ nav .brand-logo {
 }
 
 .card .card-header {
-    background-color: #4db9b9;
+    background-color:#378181;
     border-radius: 3px;
     box-shadow: 0 10px 30px -12px rgba(0, 0, 0, 0.42), 0 4px 25px 0 rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
     margin: -20px 15px 0;
@@ -118,12 +131,6 @@ nav .brand-logo {
 
 .card .card-content .category:not([class*="text-"]) {
     color: #f2f2f2;
-}
-
-.modal {
-    max-height: 98% !important;
-    top: 1% !important;
-    width: 75% !important;
 }
 
 .btn-login-oqfazer {
@@ -176,7 +183,7 @@ footer {
     height: 140px;
 }
 
-.login-backgroung {
+.oqfazer-background {
     background-position: center;
     background-repeat: no-repeat;
     background: url("../img/login-background.png");

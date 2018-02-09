@@ -10,8 +10,8 @@
                 <form name="form" ng-submit="submitLoginForm()" novalidate>
                     <div class="row">
                         <div class="input-field col s12">
-                            <input placeholder="Usuário" id="username" name="username" type="text" class="validate" ng-minlength="5" ng-model="entry.username" not-empty required>
-                            <label for="username" class="active">Usuário </label>
+                            <input id="username" name="username" type="text" class="validate" ng-minlength="5" ng-model="entry.username" required>
+                            <label for="username">Usuário</label>
                             <div ng-show="form.username.$invalid && form.$submitted">
                                 <div class="red-text">
                                     <div ng-show="form.username.$error.minlength"><small>Mínimo 5 caracteres!</small></div>
@@ -22,8 +22,8 @@
                     </div>
                     <div class="row">
                         <div class="input-field col s12">
-                            <input placeholder="Senha" id="password" name="password" type="password" class="validate" ng-minlength="6" ng-model="entry.password" not-empty required>
-                            <label for="password" class="active">Senha</label>
+                            <input id="password" name="password" type="password" class="validate" ng-minlength="6" ng-model="entry.password" required>
+                            <label for="password">Password</label>
                             <div ng-show="form.password.$invalid && form.$submitted">
                                 <div class="red-text">
                                     <div ng-show="form.password.$error.minlength"><small>Mínimo 6 caracteres!</small></div>

@@ -5,7 +5,7 @@
         .controller('cityCtrl', ['$scope', '$timeout', '$interval', 'toastr', 'SweetAlert', 'cityService', 'authUser', '$location',
             function ($scope, $timeout, $interval, toastr, SweetAlert, cityService, authUser, $location) {
 
-                $("body").addClass('login-backgroung');
+                $("body").addClass('oqfazer-background');
 
                 $scope.cities = [];
                 $scope.city = {};

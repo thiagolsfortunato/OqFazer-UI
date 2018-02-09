@@ -5,7 +5,7 @@
         .controller('categoryCtrl', ['$scope', '$timeout', '$interval', 'toastr', 'SweetAlert', 'categoryService', 'authUser', '$location',
             function ($scope, $timeout, $interval, toastr, SweetAlert, categoryService, authUser, $location) {
 
-                $("body").addClass('login-backgroung');
+                $("body").addClass('oqfazer-background');
 
                 $scope.categories = [];
                 $scope.category = {};
@@ -42,7 +42,7 @@
                         closeOnConfirm: true
                     }, function (isConfirm) {
                         if (isConfirm) {
-                            userService.deleteCategory(category).then(function (res) {
+                            categoryService.deleteCategory(category).then(function (res) {
                                 if (res.status === 200) {
                                     toastr.success('Categoria deletada com sucesso', {timeOut: 900});
                                 } else {
@@ -73,9 +73,9 @@
                 };
 
                 function getAllCategories() {
-                    categoryService.getAllCategories().then(function (categories) {
+                    categoryService.getAllCategories().then(function (res) {
                         var categoryList = [];
-                        categories.forEach(function (category) {
+                        res.data.forEach(function (category) {
                             categoryList.push(category);
                         });
                         $scope.categories = categoryList;
@@ -91,9 +91,13 @@
                     $scope.categoryForm = true;
                 };
 
+                $scope.closeCategoryForm = function () {
+                    $scope.categoryForm = false;
+                };
+
                 function clearForm() {
-                    $scope.form = {};
                     $scope.category = {};
+                    $scope.form.$setPristine();
                 }
 
             }]);

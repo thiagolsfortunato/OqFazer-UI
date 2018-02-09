@@ -1,29 +1,23 @@
 <div class="content">
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-12">
-                <div class="card z-depth-4">
-                    <div class="card-header">
-                        <a class="pull-right right" href="" ng-click="showCategoryForm()"><i class="fa fa-plus white-text"
-                                                                                         aria-hidden="true"></i></a>
-                        <h5 class="title">Categoria</h5>
-                        <p class="category">Lista de categorias</p>
+            <div class="col-md-4">
+                <div class="card card-category z-depth-4">
+                    <div class="card-header" >
+                        <button class="waves-teal waves-effect btn btn-small btn-size pull-right right" href="" ng-click="showCategoryForm()"><i class="fa-plus fa white-text" aria-hidden="true"></i></button>
+                        <h5 class="title">Categorias</h5>
                     </div>
                     <div class="card-content table-responsive">
                         <table class="table table-responsive">
                             <thead>
                             <tr>
                                 <th>Nome</th>
-                                <th>Descricao</th>
-                                <th>Pai</th>
                                 <th></th>
                             </tr>
                             </thead>
                             <tbody>
                             <tr ng-repeat="category in categories" ng-if="categories.length > 0">
                                 <td>{{category.name}}</td>
-                                <td>{{category.description}}</td>
-                                <td>{{category.parent.name}}</td>
                                 <td>
                                     <button ng-click="deleteCategory(category)" type="submit"
                                             class="btn-floating btn waves-effect waves-light red darken-2 pull-right">

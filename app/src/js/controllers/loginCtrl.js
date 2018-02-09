@@ -4,7 +4,7 @@
         function ($scope, $location, authUser, loginService, toastr) {
 
                 var KEY_STORAGE = 'token';
-                $("body").addClass('login-backgroung');
+                $("body").addClass('oqfazer-background');
 
                 StorageHelper.setItem("previous_page", "login");
                 StorageHelper.setItem("logged", false);

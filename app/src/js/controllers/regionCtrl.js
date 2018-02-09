@@ -5,7 +5,7 @@
         .controller('regionCtrl', ['$scope', '$timeout', '$interval', 'toastr', 'SweetAlert', 'regionService', 'authUser', '$location',
             function ($scope, $timeout, $interval, toastr, SweetAlert, regionService, authUser, $location) {
 
-            $("body").addClass('login-backgroung');
+            $("body").addClass('oqfazer-background');
 
             }]);
 }());

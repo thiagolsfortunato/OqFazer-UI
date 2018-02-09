@@ -6,20 +6,19 @@
                     <div class="card-header">
                         <div ng-show="logged">
                             <button type="button" ng-click="closeUserForm()"
-                                    class="waves-teal waves-effect btn btn-small pull-right close-btn-size"><span
+                                    class="waves-teal waves-effect btn btn-small pull-right btn-size"><span
                                     class="fa fa-close white-text"></span></button>
                         </div>
                         <h5 class="title">Formulário de Cadastro</h5>
-                        <p class="category">Cadastro de Usuário</p>
                     </div>
                     <div class="card-content">
                         <div class="row">
                             <form name="form" class="col s12" ng-submit="saveUser()" novalidate>
                                 <div class="row">
                                     <small class="input-field col s6">
-                                        <input placeholder="Nome" id="name" name="name" type="text" ng-model="user.name"
-                                               ng-minlength=4 ng-maxlength=15 class="validate" not-empty required>
-                                        <label class="active">Nome</label>
+                                        <input id="name" name="name" type="text" ng-model="user.name"
+                                               ng-minlength=4 ng-maxlength=15 class="validate" required>
+                                        <label for="name">Nome</label>
                                         <div ng-show="form.name.$invalid && form.$submitted">
                                             <div class="red-text">
                                                 <div ng-show="form.name.$error.required">Campo Obrigatório!</div>
@@ -29,10 +28,10 @@
                                         </div>
                                     </small>
                                     <small class="input-field col s6">
-                                        <input placeholder="Email" id="email" name="email" type="email"
+                                        <input id="email" name="email" type="email"
                                                ng-model="user.email"
                                                class="validate" not-empty required>
-                                        <label class="active">Email</label>
+                                        <label for="email">Email</label>
                                         <div ng-show="form.email.$invalid && form.$submitted">
                                             <div class="red-text">
                                                 <div ng-show="form.email.$error.required">Campo Obrigatório!</div>
@@ -41,10 +40,10 @@
                                         </div>
                                     </small>
                                     <small class="input-field col s6">
-                                        <input placeholder="Username" id="username" name="username" type="text"
+                                        <input id="username" name="username" type="text"
                                                ng-model="user.username" ng-minlength=4 ng-maxlength=15 class="validate"
-                                               not-empty required>
-                                        <label class="active">Username</label>
+                                               required>
+                                        <label for="username">Username</label>
                                         <div ng-show="form.username.$invalid && form.$submitted">
                                             <div class="red-text">
                                                 <div ng-show="form.username.$error.required">Campo Obrigatório!</div>
@@ -55,16 +54,16 @@
                                     </small>
                                     <small class="input-field col s6">
                                         <div ng-if="isEdit">
-                                            <input placeholder="Password" id="passwordEdit" name="password"
+                                            <input id="passwordEdit" name="password"
                                                    type="password"
                                                    ng-minlength=6 ng-model="user.password" class="validate">
-                                            <label class="active">Password</label>
+                                            <label for="passwordEdit">Password</label>
                                         </div>
                                         <div ng-if="!isEdit">
-                                            <input placeholder="Password" id="password" name="password" type="password"
+                                            <input id="password" name="password" type="password"
                                                    ng-minlength=6 ng-model="user.password" class="validate"
-                                                   not-empty required>
-                                            <label class="active">Password</label>
+                                                   required>
+                                            <label for="password">Password</label>
                                             <div ng-show="form.password.$invalid && form.$submitted">
                                                 <div class="red-text">
                                                     <div ng-show="form.password.$error.minlength">Mínimo 6 caracteres!
@@ -80,9 +79,9 @@
                                 <div class="row">
                                     <small class="input-field col s6">
                                         <input id="phone" name="phone" ui-mask="(99)99999-9999" type="text"
-                                               ng-model="user.phone" ng-minlength=13 ng-maxlength=14 class="validate"
-                                               not-empty required>
-                                        <label class="active">Celular</label>
+                                               ng-model="user.phone" ng-minlength=10 ng-maxlength=11 class="validate"
+                                               required>
+                                        <label for="phone" class="active">Celular</label>
                                         <div ng-show="form.phone.$invalid && form.$submitted">
                                             <div class="red-text">
                                                 <div ng-show="form.phone.$error.required">Campo Obrigatório!</div>
