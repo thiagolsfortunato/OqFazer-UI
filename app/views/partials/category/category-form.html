@@ -16,7 +16,7 @@
                                     <small class="input-field col s6">
                                         <input id="name" name="name" type="text" ng-model="category.name"
                                                ng-minlength=4 ng-maxlength=15 class="validate" required>
-                                        <label for="name">Nome</label>
+                                        <label ng-class="isEdit ? 'active' : ''" for="name">Nome</label>
                                         <div ng-show="form.name.$invalid && form.$submitted">
                                             <div class="red-text">
                                                 <div ng-show="form.name.$error.required">Campo Obrigatório!</div>

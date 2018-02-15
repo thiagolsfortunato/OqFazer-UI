@@ -4,7 +4,7 @@
     angular.module('app').service('categoryService', ['api', function (api) {
 
         this.saveCategory = function (category) {
-            if (user.hasOwnProperty('id') && category.id) {
+            if (category.hasOwnProperty('id') && category.id) {
                 return api.editCategory(category).then(function (res) {
                     return res;
                 });
@@ -22,7 +22,7 @@
         };
 
         this.getCategoryByName = function (name) {
-            return api.getUserByName(name).then(function (res) {
+            return api.getCategoryByName(name).then(function (res) {
                 return res;
             });
         };

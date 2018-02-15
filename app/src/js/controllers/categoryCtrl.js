@@ -2,33 +2,46 @@
     'use strict';
 
     angular.module('app')
-        .controller('categoryCtrl', ['$scope', '$timeout', '$interval', 'toastr', 'SweetAlert', 'categoryService', 'authUser', '$location',
-            function ($scope, $timeout, $interval, toastr, SweetAlert, categoryService, authUser, $location) {
+        .controller('categoryCtrl', ['$scope', '$timeout', '$interval', 'toastr', 'SweetAlert', 'categoryService','utils',
+            function ($scope, $timeout, $interval, toastr, SweetAlert, categoryService, utils) {
 
                 $("body").addClass('oqfazer-background');
 
                 $scope.categories = [];
                 $scope.category = {};
                 $scope.categoryForm = false;
+                $scope.isEdit = false;
 
                 $scope.saveCategory = function () {
                     if ($scope.form.$valid) {
                         categoryService.saveCategory($scope.category).then(function (res) {
                             if (res.status === 201) {
-                                $scope.category = res.data;
+                                $scope.categories.push(res.data);
                                 toastr.success('Salvo com sucesso', {timeOut: 900});
                             } else if (res.status === 200) {
+                                var position = utils.findPosition($scope.categories, res.data.id);
+                                console.log(position);
+                                $scope.categories[position] = res.data;
                                 toastr.success('Editado com sucesso', {timeOut: 900});
                             } else {
                                 toastr.error('Não foi possível salvar o usuário', {timeOut: 900});
                             }
                         }).catch(function (res) {
                             if (res.status === 409) {
-                                toastr.error('Categoria Existente!', {timeOut: 900});
+                                toastr.error('Categoria já cadastrada!', {timeOut: 900});
                             }
+                        }).finally(function () {
+                            $scope.closeCategoryForm();
                         })
                     }
                 };
+
+                $scope.editCategory = function (category) {
+                    $scope.isEdit = true;
+                    $scope.categoryForm = true;
+                    $scope.category = angular.copy(category);
+                };
+
 
                 $scope.deleteCategory = function (category) {
                     SweetAlert.swal({
@@ -44,6 +57,7 @@
                         if (isConfirm) {
                             categoryService.deleteCategory(category).then(function (res) {
                                 if (res.status === 200) {
+                                    $scope.categories.splice($scope.categories.indexOf(category), 1);
                                     toastr.success('Categoria deletada com sucesso', {timeOut: 900});
                                 } else {
                                     toastr.error('Não foi possível deletar a categoria', {timeOut: 900});
