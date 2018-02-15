@@ -14,11 +14,12 @@
             var KEY_STORAGE = 'token';
             var user = authUser.getUser();
 
-            $scope.user = angular.copy(user);
-            $scope.logged = authUser.isLogged();
-
-            $scope.isAdmin = loginService.isAdmin(user);
-            if($scope.logged) $scope.username = user.username;
+            if(typeof user !== 'undefined') {
+                $scope.user = angular.copy(user);
+                $scope.logged = authUser.isLogged();
+                $scope.isAdmin = loginService.isAdmin(user);
+                if ($scope.logged) $scope.username = user.username;
+            }
 
             $(document).ready(function(){
                 $('.dropdown-button').dropdown();

@@ -18,7 +18,7 @@
                                     <small class="input-field col s6">
                                         <input id="name" name="name" type="text" ng-model="user.name"
                                                ng-minlength=4 ng-maxlength=15 class="validate" required>
-                                        <label for="name">Nome</label>
+                                        <label ng-class="isEdit ? 'active' : ''" for="name">Nome</label>
                                         <div ng-show="form.name.$invalid && form.$submitted">
                                             <div class="red-text">
                                                 <div ng-show="form.name.$error.required">Campo Obrigatório!</div>
@@ -31,7 +31,7 @@
                                         <input id="email" name="email" type="email"
                                                ng-model="user.email"
                                                class="validate" not-empty required>
-                                        <label for="email">Email</label>
+                                        <label ng-class="isEdit ? 'active' : ''" for="email">Email</label>
                                         <div ng-show="form.email.$invalid && form.$submitted">
                                             <div class="red-text">
                                                 <div ng-show="form.email.$error.required">Campo Obrigatório!</div>
@@ -43,7 +43,7 @@
                                         <input id="username" name="username" type="text"
                                                ng-model="user.username" ng-minlength=4 ng-maxlength=15 class="validate"
                                                required>
-                                        <label for="username">Username</label>
+                                        <label ng-class="isEdit ? 'active' : ''" for="username">Username</label>
                                         <div ng-show="form.username.$invalid && form.$submitted">
                                             <div class="red-text">
                                                 <div ng-show="form.username.$error.required">Campo Obrigatório!</div>

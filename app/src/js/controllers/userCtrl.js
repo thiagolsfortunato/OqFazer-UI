@@ -2,8 +2,8 @@
     'use strict';
 
     angular.module('app')
-        .controller('userCtrl', ['$scope', '$rootScope', '$timeout', 'toastr', 'SweetAlert', 'userService', 'authUser', 'loginService', '$location',
-            function ($scope, $rootScope, $timeout, toastr, SweetAlert, userService, authUser, loginService, $location) {
+        .controller('userCtrl', ['$scope', '$rootScope', '$timeout', 'toastr', 'SweetAlert', 'userService', 'authUser', 'loginService', '$location', 'utils',
+            function ($scope, $rootScope, $timeout, toastr, SweetAlert, userService, authUser, loginService, $location, utils) {
 
                 $("body").addClass('oqfazer-background');
 
@@ -11,7 +11,6 @@
                 var previous = StorageHelper.getItem("previous_page");
                 var user = authUser.getUser();
 
-                $scope.myProfile = false;
                 $scope.isAdmin = loginService.isAdmin(user);
                 $scope.logged = authUser.isLogged();
                 $scope.userForm = false;
@@ -36,7 +35,7 @@
                                 toastr.success('Salvo com sucesso', {timeOut: 900});
                                 if(!$scope.logged) $location.path('/login');
                             } else if (res.status === 200) {
-                                var position = findPosition($scope.users, res.data.id);
+                                var position = utils.findPosition($scope.users, res.data.id);
                                 if ($scope.user.loged) {
                                     loginService.refreshToken(res.data);
                                 }
@@ -150,14 +149,6 @@
                 function clearForm() {
                     $scope.user = {};
                     $scope.form.$setPristine();
-                }
-
-                function findPosition(list, id) {
-                    for (var i = 0; i < list.length; i++) {
-                        if (list[i].id === id) {
-                            return i;
-                        }
-                    }
                 }
 
                 function isLoggedUser(user) {
