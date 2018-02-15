@@ -1,10 +1,42 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-
-</body>
-</html>
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card card-category z-depth-4">
+                    <div class="card-header" >
+                        <button class="waves-teal waves-effect btn btn-small btn-size pull-right right" href="" ng-click="showRegionForm()"><i class="fa-plus fa white-text" aria-hidden="true"></i></button>
+                        <h5 class="title">Regiões</h5>
+                    </div>
+                    <div class="card-content table-responsive">
+                        <table class="table table-responsive">
+                            <thead>
+                            <tr>
+                                <th>Nome</th>
+                                <th></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr ng-repeat="region in regions" ng-if="regions.length > 0">
+                                <td>{{region.name}}</td>
+                                <td>
+                                    <button ng-click="deleteRegion(region)" type="submit"
+                                            class="btn-floating btn waves-effect waves-light red darken-2 pull-right">
+                                        <span class="fa fa-trash"></span></button>
+                                    <button ng-click="editRegion(region)" type="submit"
+                                            class="btn-floating btn waves-effect waves-light oqfazer-color pull-right">
+                                        <span class="fa fa-pencil"></span></button>
+                                </td>
+                            </tr>
+                            <tr ng-if="regions.length == 0">
+                                <td colspan="2" class="semRegistros">
+                                    <p>Sem Registros</p>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

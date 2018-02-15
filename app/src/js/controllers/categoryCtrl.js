@@ -20,11 +20,10 @@
                                 toastr.success('Salvo com sucesso', {timeOut: 900});
                             } else if (res.status === 200) {
                                 var position = utils.findPosition($scope.categories, res.data.id);
-                                console.log(position);
                                 $scope.categories[position] = res.data;
                                 toastr.success('Editado com sucesso', {timeOut: 900});
                             } else {
-                                toastr.error('Não foi possível salvar o usuário', {timeOut: 900});
+                                toastr.error('Não foi possível salvar a categoria', {timeOut: 900});
                             }
                         }).catch(function (res) {
                             if (res.status === 409) {
@@ -73,9 +72,9 @@
 
                 $scope.getCategoryByName = function (category) {
                     if (typeof category !== "undefined") {
-                        categoryService.getCategoryByName(category.name).then(function (category) {
+                        categoryService.getCategoryByName(category.name).then(function (res) {
                             if (category.status === 200) {
-                                $scope.category = category.data;
+                                $scope.category = res.data;
                                 toastr.success('Categoria carregada com Sucesso', {timeOut: 900});
                             }
                         }).catch(function (categoria) {

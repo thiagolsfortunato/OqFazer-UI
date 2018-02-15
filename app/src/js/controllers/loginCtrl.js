@@ -21,7 +21,10 @@
                             }).catch(function (error) {
                             if (error.status === 401) {
                                 toastr.error('Usuário ou Senha Inválido!', {timeOut: 900});
+                                $scope.entry.password = "";
                             } else {
+                                $scope.entry.password = "";
+                                $scope.entry.password = "";
                                 toastr.error('Falha no login', {timeOut: 900});
                                 console.log(error);
                             }

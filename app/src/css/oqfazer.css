@@ -80,6 +80,12 @@ nav .brand-logo {
     margin-top: 0;
 }
 
+.semRegistros {
+    font-family: ShadowRegular;
+    font-style: inherit;
+    font-size: 20px;
+}
+
 .card .card-content {
     padding: 15px 20px;
 }

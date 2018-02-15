@@ -11,11 +11,11 @@
          * CRUD City
          */
 
-        this.saveCity = function (city) {
+        this.saveRegion = function (region) {
             return $http({
                 method: 'POST',
-                url: baseUrl + '/api/city',
-                data: city,
+                url: baseUrl + '/api/region',
+                data: region,
                 headers: {
                     'Content-type': 'application/json;charset=utf-8',
                     'X-Auth-Token': StorageHelper.getItem(KEY_STORAGE)
@@ -23,11 +23,11 @@
             });
         };
 
-        this.deleteCity = function (city) {
+        this.deleteRegion = function (region) {
             return $http({
                 method: 'DELETE',
-                url: baseUrl + '/api/city',
-                data: city,
+                url: baseUrl + '/api/region',
+                data: region,
                 headers: {
                     'Content-type': 'application/json;charset=utf-8',
                     'X-Auth-Token': StorageHelper.getItem(KEY_STORAGE)
@@ -35,11 +35,11 @@
             });
         };
 
-        this.editCity = function (city) {
+        this.editRegion = function (region) {
             return $http({
                 method: 'PUT',
-                url: baseUrl + '/api/city',
-                data: city,
+                url: baseUrl + '/api/region',
+                data: region,
                 headers: {
                     'Content-type': 'application/json;charset=utf-8',
                     'X-Auth-Token': StorageHelper.getItem(KEY_STORAGE)
@@ -47,12 +47,12 @@
             });
         };
 
-        this.getCityByName = function (city) {
+        this.getRegionByName = function (region) {
             return $http({
                 method: 'GET',
-                url: baseUrl + '/api/city',
+                url: baseUrl + '/api/region',
                 params:{
-                    name : city.name
+                    name : region.name
                 },
                 headers: {
                     'X-Auth-Token': StorageHelper.getItem(KEY_STORAGE)
@@ -60,10 +60,10 @@
             });
         };
 
-        this.getAllCities= function () {
+        this.getAllRegions = function () {
             return $http({
                 method: 'GET',
-                url: baseUrl + '/api/cities',
+                url: baseUrl + '/api/regions',
                 headers: {
                     'X-Auth-Token': StorageHelper.getItem(KEY_STORAGE)
                 }
